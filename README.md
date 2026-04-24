@@ -4,6 +4,46 @@
 
 ¡Saludos, explorador digital! Has llegado a **Hola Jungla de Bits**, el rincón más salvaje del ecosistema binario, donde los `0` y los `1` conviven en perfecta (y caótica) armonía. Ajusta tu sombrero de safari, carga tu mochila con buenos commits y prepárate para una expedición épica.
 
+## Endpoint Go: informacion del host
+
+Este repo ahora incluye una pequena API HTTP en Go que expone informacion del host y tambien puede usarse en modo CLI.
+
+### Ejecutar como servidor
+
+```bash
+go run .
+```
+
+El servidor levanta por defecto en `:8080` y expone:
+
+- `GET /api/host-info` -> respuesta JSON para webapps.
+- `GET /api/host-info?format=text` -> respuesta texto plano para CLI.
+- `GET /health` -> estado simple del servicio.
+
+Ejemplos:
+
+```bash
+curl http://localhost:8080/api/host-info
+curl http://localhost:8080/api/host-info?format=text
+```
+
+### Ejecutar como CLI
+
+```bash
+go run . -cli
+go run . -cli -format=text
+```
+
+La salida entrega:
+
+- hostname
+- sistema operativo
+- arquitectura
+- cantidad de CPU
+- version de Go
+- IPs locales detectadas
+- fecha/hora de recoleccion en UTC
+
 ---
 
 ## 🗺️ ¿Qué es esta jungla?
@@ -34,7 +74,7 @@ Este repositorio es el punto de partida de una aventura por el vasto follaje del
 ## 🐾 Fauna local
 
 | Criatura            | Hábitat                     | Peligro |
-|---------------------|-----------------------------|---------|
+|---------------------|-----------------------------|----------|
 | 🐒 Mono Refactor    | Ramas muy largas            | Medio   |
 | 🐛 Bug Escurridizo  | Cualquier línea no testeada | Alto    |
 | 🦋 Feature Bonita   | Issues abiertos             | Bajo    |
